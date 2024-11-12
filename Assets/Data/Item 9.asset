@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53617a4020f86ec408ff1fe0ffc1e8b6, type: 3}
+  m_Name: Item 9
+  m_EditorClassIdentifier: 
+  itemType: 7
+  itemId: 9
+  itemName: madness
+  itemInitialDesc: 'Increase all weapon damage
+
+    based on current MBLv'
+  itemDesc: 'All Weapon Damage per MBLv {0}%+,
+
+    MaxMentalPoint - {1}'
+  itemIcon: {fileID: 218841338, guid: c4d2ccab0c2ad7e47853b6e31a7ac7c2, type: 3}
+  baseDamage: 0
+  baseCount: 0
+  baseEffectSize: 0
+  damages:
+  - 0.05
+  - 0.1
+  - 0.15
+  - 0.2
+  - 0.25
+  counts: 050000000500000005000000050000000a000000
+  effectSizes:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  projectile: {fileID: 0}
+  posOffset: 0

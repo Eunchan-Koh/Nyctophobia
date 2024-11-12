@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53617a4020f86ec408ff1fe0ffc1e8b6, type: 3}
+  m_Name: Item 10
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemId: 10
+  itemName: Ice Ball
+  itemInitialDesc: 'Fires Ice ball to nearest enemy
+
+    Create Ice field on collision'
+  itemDesc: 'Damage {0}%+,
+
+    Slow Area size {1}%+'
+  itemIcon: {fileID: 1807624531, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  baseDamage: 5
+  baseCount: 0
+  baseEffectSize: 3
+  damages:
+  - 0
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1
+  counts: 0000000000000000000000000000000000000000
+  effectSizes:
+  - 0
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  projectile: {fileID: 815436105651822150, guid: 616c439d976b4b34284e7efd6797449d, type: 3}
+  posOffset: 0

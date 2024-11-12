@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53617a4020f86ec408ff1fe0ffc1e8b6, type: 3}
+  m_Name: item 1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemId: 1
+  itemName: fireball
+  itemInitialDesc: 'fires fireball to the nearest
+
+    enemy automatically.'
+  itemDesc: 'Damage {0}%+,
+
+    penetration {1}+ '
+  itemIcon: {fileID: 154122315, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  baseDamage: 3.5
+  baseCount: 0
+  baseEffectSize: 0
+  damages:
+  - 0.35
+  - 0.7
+  - 1
+  - 1.4
+  - 2
+  counts: 0100000001000000020000000300000004000000
+  effectSizes:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  projectile: {fileID: 6856958495737900927, guid: 22a02efef89dd4e4c9fa5b93039908e9, type: 3}
+  posOffset: 0

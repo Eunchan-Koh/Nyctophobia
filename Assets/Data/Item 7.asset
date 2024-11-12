@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53617a4020f86ec408ff1fe0ffc1e8b6, type: 3}
+  m_Name: Item 7
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemId: 7
+  itemName: Electricity Field
+  itemInitialDesc: "Creates Electricity Field every \n1 second, attacking near enemies"
+  itemDesc: 'Damage {0}%+,
+
+    Attack Speed {1}%, Size {2}%+'
+  itemIcon: {fileID: -2695511677704976402, guid: 43cc47a68ec6aad4d8fa422fab2c0a31, type: 3}
+  baseDamage: 3
+  baseCount: 1
+  baseEffectSize: 3
+  damages:
+  - 0
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  counts: 00000000010000000100000001000000010000000100000001000000
+  effectSizes:
+  - 0
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  projectile: {fileID: 506745709308813347, guid: 9a83896dd5393e047b59430c29688d2e, type: 3}
+  posOffset: 0
