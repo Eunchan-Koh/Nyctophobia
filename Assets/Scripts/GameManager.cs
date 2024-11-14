@@ -218,6 +218,38 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    public void MentalDamage(float dmg, int effectIndex){
+        float tempCal = mentalPoint - dmg;
+        //tempcal은 양수, 즉 정신력이 데미지보다 높음
+        if(tempCal>=0)
+            mentalPoint = tempCal;
+        else if(tempCal<0){//tempcal은 음수, 남은 정신력보다 데미지가 높음
+            //아직 mblv이 맥스 레벨이 아님
+            if(MBLv < maxMBLv){
+                MBLvIncrease();
+                mentalPoint = maxMentalPoint + tempCal;
+                
+                
+            }else{//이미 맥스레벨임
+                mentalPoint = 0;
+                health += tempCal*MPHPTransRate;//tempCal이 음수이므로 데미지임
+                //체력이 줄었으므로 캐릭터 사망체크
+                player.PlayerDeadCheck();
+            }
+        }
+
+        //effect
+        switch(effectIndex){
+            case 1://지글지글 이펙트
+                VolumeManager.instance.CallFilmGrainEffect();
+                break;
+            case 2:
+                VolumeManager.instance.CallCAEffect();
+                fadeInOut.FadeOut();
+                break;
+        }
+        
+    }
 
     public void HealthDamage(float dmg){
         health -= dmg;

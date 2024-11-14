@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class LookAtMe : MonoBehaviour
 {
+    [Header("Look judgement")]
+    public float lookRange;
+    public float lookAngleDegree;
+    public bool lookingAtIt;
+    [Header("damage per second")]
+    public float mentalDamageAmount;
+    
+    
 
     void Update(){
+        if(!GameManager.instance.isLive)
+            return;
+        
+        LookCheck();
+        if(lookingAtIt){
+            GameManager.instance.MentalDamage(mentalDamageAmount*Time.deltaTime, 1);
+            
+        }
+    }
+
+    public void LookCheck(){
         Vector3 fromPtoThis;
         fromPtoThis = transform.position - GameManager.instance.player.transform.position;
         fromPtoThis = fromPtoThis.normalized;
@@ -17,8 +36,10 @@ public class LookAtMe : MonoBehaviour
         //temp shows the angle betwween player's lsat direction facing and this object.
 
         float distance = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
-        if(angle <= 45 && distance <= 5){
-            Debug.Log("MP damage!");
+        if(angle <= lookAngleDegree && distance <= lookRange){
+            lookingAtIt = true;
+        }else{
+            lookingAtIt = false;
         }
     }
 }

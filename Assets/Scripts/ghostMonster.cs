@@ -70,9 +70,9 @@ public class ghostMonster : MonoBehaviour
             return;
 
         //give mental damage
-        GameManager.instance.MentalDamage(mentalDamage);
+        GameManager.instance.MentalDamage(mentalDamage,2);
         //add effects for mental damage
-        GameManager.instance.fadeInOut.FadeOut();
+        // GameManager.instance.fadeInOut.FadeOut();
         //make mentalDamage method contains mental damage ui(after setting another method for candle off damage), or keep ui effect on ghostmonsters to make each monsters has their own UIs
         
         //disappears

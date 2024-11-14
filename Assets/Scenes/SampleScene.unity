@@ -9619,6 +9619,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7296e45de62e7145b95353b5791e358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookRange: 7
+  lookAngleDegree: 45
+  lookingAtIt: 0
+  mentalDamageAmount: 80
 --- !u!212 &75617186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9682,7 +9686,7 @@ Transform:
   m_GameObject: {fileID: 75617184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.05, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11953,6 +11957,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439308482}
   m_CullTransparentMesh: 1
+--- !u!1 &451516469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451516471}
+  - component: {fileID: 451516470}
+  m_Layer: 0
+  m_Name: Global Volume (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &451516470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451516469}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: a57e8245194ca3d4ebfd69ffb820df3a, type: 2}
+--- !u!4 &451516471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451516469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49337175, y: -0.059608586, z: -0.016249381}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456130565
 GameObject:
   m_ObjectHideFlags: 0
@@ -35865,6 +35918,7 @@ MonoBehaviour:
   baseSpeed: 5
   speed: 5
   scanner: {fileID: 0}
+  lastFacing: {x: 0, y: 0, z: 0}
   candle: {fileID: 2081985130}
   candleUI: {fileID: 1886649234}
   candleOn: 0
@@ -47365,6 +47419,12 @@ MonoBehaviour:
   offsetStrength: 0.2
   currentVal: 0
   targetVal: 0
+  a1: 0
+  FGDisSpeed: 0.5
+  filmGrainVal: 0
+  a2: 0
+  CADisSpeed: 0.5
+  caVal: 0
 --- !u!1 &1740274299
 GameObject:
   m_ObjectHideFlags: 0
@@ -49251,3 +49311,4 @@ SceneRoots:
   - {fileID: 395598727}
   - {fileID: 1200408700}
   - {fileID: 75617187}
+  - {fileID: 451516471}
