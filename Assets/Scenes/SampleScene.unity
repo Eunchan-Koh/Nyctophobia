@@ -9600,13 +9600,14 @@ GameObject:
   - component: {fileID: 75617187}
   - component: {fileID: 75617186}
   - component: {fileID: 75617185}
+  - component: {fileID: 75617188}
   m_Layer: 0
-  m_Name: TestCircle
+  m_Name: LookAtMe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &75617185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9623,6 +9624,9 @@ MonoBehaviour:
   lookAngleDegree: 45
   lookingAtIt: 0
   mentalDamageAmount: 80
+  movingSpeed: 6
+  lookMovingSpeed: 2
+  stopDistance: 3
 --- !u!212 &75617186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9685,13 +9689,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75617184}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.05, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1343892628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &75617188
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75617184}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &106360981
 GameObject:
   m_ObjectHideFlags: 0
@@ -11625,10 +11656,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss:
   - {fileID: 1841044773}
+  - {fileID: 75617184}
   bossClearReqUI: {fileID: 1619604442}
   ClearStack: 3
   CurStack1: 0
   doingBossFight: 0
+  curBossIndex: 0
 --- !u!1 &400683005
 GameObject:
   m_ObjectHideFlags: 0
@@ -22782,7 +22815,7 @@ MonoBehaviour:
   curShieldStack: 0
   isShieldActive: 0
   bossTime:
-  - 60
+  - 10
   - 180
   curBossStage: 0
   fadeInOut: {fileID: 1067268405}
@@ -35345,6 +35378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1841044778}
+  - {fileID: 75617187}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345214560
@@ -49310,5 +49344,4 @@ SceneRoots:
   - {fileID: 1343892628}
   - {fileID: 395598727}
   - {fileID: 1200408700}
-  - {fileID: 75617187}
   - {fileID: 451516471}

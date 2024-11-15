@@ -14,6 +14,7 @@ public class BossManager : MonoBehaviour
     public int CurStack1;
     public bool doingBossFight;
     float timer;
+    public int curBossIndex;//fork = 0, look = 1
     
     void Awake()
     {

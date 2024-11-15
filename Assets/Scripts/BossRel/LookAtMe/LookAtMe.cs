@@ -10,18 +10,57 @@ public class LookAtMe : MonoBehaviour
     public bool lookingAtIt;
     [Header("damage per second")]
     public float mentalDamageAmount;
+
+    [Header("Others")]
+    public float movingSpeed;
+    public float lookMovingSpeed;
+    [Range(0.0f, 7.0f)]
+    public float stopDistance;
+    Rigidbody2D rigid;
+
+    void Awake(){
+        rigid = GetComponent<Rigidbody2D>();
+    }
+
+    void OnEnable(){
+        transform.position = GameManager.instance.player.transform.position + new Vector3(11, 11, 0);
+    }
     
     
 
     void Update(){
         if(!GameManager.instance.isLive)
             return;
-        
+
         LookCheck();
         if(lookingAtIt){
             GameManager.instance.MentalDamage(mentalDamageAmount*Time.deltaTime, 1);
-            
         }
+    }
+
+    void FixedUpdate(){
+        if(!GameManager.instance.isLive)
+            return;
+
+        MovingMethodL();
+    }
+
+    
+    public void MovingMethodL(){
+        float distancePL = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
+        if(distancePL > stopDistance){
+            Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*movingSpeed);
+            transform.position = newPos;
+        }else{
+            if(lookingAtIt){
+                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*lookMovingSpeed);
+                transform.position = newPos;
+            }else{
+                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*lookMovingSpeed*1.1f);
+                transform.position = newPos;
+            }
+        } 
+        
     }
 
     public void LookCheck(){

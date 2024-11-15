@@ -52,16 +52,21 @@ public class Spawner : MonoBehaviour
             return;
         }
         // Debug.Log("boss spawn called!");
-        timer += Time.deltaTime;
-        if(timer>FoodBoxData.spawnTime){
-            if(curFoodCount >= maxFoodCount){
-                timer = FoodBoxData.spawnTime;
-            }else{
-                timer=0;
-                SpawnFoodBox();
+
+        //if it is forkNKnife boss
+        if(BossManager.instance.curBossIndex == 0){
+            timer += Time.deltaTime;
+            if(timer>FoodBoxData.spawnTime){
+                if(curFoodCount >= maxFoodCount){
+                    timer = FoodBoxData.spawnTime;
+                }else{
+                    timer=0;
+                    SpawnFoodBox();
+                }
+                
             }
-            
         }
+        
     }
 
     void Spawn(){

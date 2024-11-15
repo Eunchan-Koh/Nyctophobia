@@ -41,6 +41,7 @@ public class ForkNKnife : MonoBehaviour
     }
 
     void OnEnable(){
+        pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position;
         transform.position = Camera.main.GetComponentsInChildren<Transform>()[1].position;
     }
 
