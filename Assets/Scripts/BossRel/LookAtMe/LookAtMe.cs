@@ -17,9 +17,11 @@ public class LookAtMe : MonoBehaviour
     [Range(0.0f, 7.0f)]
     public float stopDistance;
     Rigidbody2D rigid;
+    CameraMovement CM;
 
     void Awake(){
         rigid = GetComponent<Rigidbody2D>();
+        CM = Camera.main.GetComponent<CameraMovement>();
     }
 
     void OnEnable(){
@@ -35,6 +37,9 @@ public class LookAtMe : MonoBehaviour
         LookCheck();
         if(lookingAtIt){
             GameManager.instance.MentalDamage(mentalDamageAmount*Time.deltaTime, 1);
+            CM.zoomIn = true;
+        }else{
+            CM.zoomIn = false;
         }
     }
 

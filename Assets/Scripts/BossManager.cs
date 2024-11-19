@@ -30,6 +30,7 @@ public class BossManager : MonoBehaviour
         ResetStacks();
         ResetUI();
         doingBossFight = true;
+        curBossIndex = index;
         GameManager.instance.player.cannnotTurnOnCandle = true;
         GameManager.instance.MonsterSpawn = false;
         boss[index].SetActive(true);

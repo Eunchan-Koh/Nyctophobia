@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,10 +58,16 @@ public class GameManager : MonoBehaviour
     [Header("Ghost related")]
     public FadeInOut fadeInOut;
 
+    [Header("testing values")]
+    public Image NoiseEffectScreen;
+    public Material noiseMat;
+
 
     void Awake(){
         instance = this;
         curBossStage = 0;
+        noiseMat = NoiseEffectScreen.material;
+        noiseMat.SetFloat("_Alpha", 0);
     }
 
     public void GameStart(){
@@ -148,7 +155,7 @@ public class GameManager : MonoBehaviour
 
         if(curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
             curBossStage++;
-            BossManager.instance.StartBossStage(0);
+            BossManager.instance.StartBossStage(1);
         }
         if(gameTime > maxGameTime){
             gameTime = maxGameTime;
@@ -240,7 +247,7 @@ public class GameManager : MonoBehaviour
 
         //effect
         switch(effectIndex){
-            case 1://지글지글 이펙트
+            case 1://지글지글 이펙트 - LookAtMe 전용
                 VolumeManager.instance.CallFilmGrainEffect();
                 break;
             case 2:
