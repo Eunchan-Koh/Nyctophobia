@@ -57,7 +57,8 @@ public class VolumeManager : MonoBehaviour
         // filmGrainTimeCheck += ;
         if(filmGrainVal > 0){
             filmGrainVal -= Time.deltaTime*FGDisSpeed;
-            filmGrain.intensity.Override(filmGrainVal);
+            // filmGrain.intensity.Override(filmGrainVal);
+            GameManager.instance.noiseMat.SetFloat("_Alpha", filmGrainVal);
         }else{
             filmGrainVal = 0;
         }
@@ -85,7 +86,10 @@ public class VolumeManager : MonoBehaviour
     }
 
     public void CallFilmGrainEffect(){
-        filmGrainVal = 1;
+        if(filmGrainVal < 0.8f)
+            filmGrainVal += Time.deltaTime;
+        else
+            filmGrainVal = 0.8f;
     }
     public void CHangeFilmGrain(int index){
         switch(index){
