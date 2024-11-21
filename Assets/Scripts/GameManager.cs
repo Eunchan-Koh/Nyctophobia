@@ -278,6 +278,10 @@ public class GameManager : MonoBehaviour
 
     public void MBLvIncrease(){
         MBLv++;
+        //MLBv에 따른 이펙트
+        if(MBLv > 2){
+            VolumeManager.instance.GrayScale();
+        }
         //mblv이 늘었으므로 이펙트 체크 함수 넣을것
         VolumeManager.instance.IntensityChange(MBLv);
         //오디오도 변화함

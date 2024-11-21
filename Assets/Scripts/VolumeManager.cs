@@ -33,6 +33,13 @@ public class VolumeManager : MonoBehaviour
     ChromaticAberration ca;
     public float caVal;
 
+    [Range(-100, 0)]
+    public float saturationVal;
+    ColorAdjustments colorAdj;
+    public float satRecoverSpeed;
+    public bool satRecovering;
+    public bool setGrayScale;
+
 
     //this volume is not sound volume! it is UI effects
     //this only manages vignette yet
@@ -45,6 +52,9 @@ public class VolumeManager : MonoBehaviour
         filmGrain = fg;
         vol.profile.TryGet(out ChromaticAberration Ca);
         ca = Ca;
+        vol.profile.TryGet(out ColorAdjustments CAJ);
+        colorAdj = CAJ;
+        saturationVal = 0;
     }
     void Update(){
         if(!GameManager.instance.isLive)
@@ -71,6 +81,26 @@ public class VolumeManager : MonoBehaviour
             caVal = 0;
         }
 
+        //grayscale setting
+        if(!setGrayScale && saturationVal < 0)
+            saturationVal += Time.deltaTime*satRecoverSpeed;
+        colorAdj.saturation.Override(saturationVal);
+
+    }
+
+    public void GrayScale(){
+        setGrayScale = true;
+        saturationVal = -100;
+    }
+
+    public void GrayScaleRecover(float forTime){
+        StopCoroutine(GrayScaleFor(forTime));
+        StartCoroutine(GrayScaleFor(forTime));
+    }
+    IEnumerator GrayScaleFor(float forTime){
+        setGrayScale = true;
+        yield return new WaitForSeconds(forTime);
+        setGrayScale = false;
     }
 
     public void IntensityChange(int MBLv){
