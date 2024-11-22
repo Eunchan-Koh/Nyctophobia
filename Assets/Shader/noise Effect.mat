@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: noise Effect
   m_Shader: {fileID: -6465566751694194690, guid: bd968eb5e366e5e4eab20560f5aeb01c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,7 +67,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: -0.0056963624
+    - _Alpha: -0.001231794
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
     - _QueueControl: 0

@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     [Header("Boss Related")]
     public float[] bossTime;
     public int curBossStage;
+    public GameObject bossEntrancePage;
     [Header("Ghost related")]
     public FadeInOut fadeInOut;
 
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
 
         if(curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
             curBossStage++;
+            bossEntrancePage.SetActive(true);
             BossManager.instance.StartBossStage(1);
         }
         if(gameTime > maxGameTime){
@@ -345,6 +347,10 @@ public class GameManager : MonoBehaviour
     public void Resume(){
         isLive = true;
         Time.timeScale = 1;
+    }
+
+    public void SlowForAnimation(){
+        Time.timeScale = 0.001f;
     }
 
 }
