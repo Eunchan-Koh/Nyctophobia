@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class LookAtMe : MonoBehaviour
@@ -19,13 +20,18 @@ public class LookAtMe : MonoBehaviour
     Rigidbody2D rigid;
     CameraMovement CM;
 
+    public float curSpeed;
+    public float timeCheck;
+
     void Awake(){
         rigid = GetComponent<Rigidbody2D>();
         CM = Camera.main.GetComponent<CameraMovement>();
+        curSpeed = movingSpeed;
     }
 
     void OnEnable(){
         transform.position = GameManager.instance.player.transform.position + new Vector3(11, 11, 0);
+        timeCheck = 0;
     }
     
     
@@ -33,6 +39,13 @@ public class LookAtMe : MonoBehaviour
     void Update(){
         if(!GameManager.instance.isLive)
             return;
+
+        
+        timeCheck += Time.deltaTime;
+        if(timeCheck > 5){
+            RepositionL();
+            timeCheck = 0;
+        }
 
         LookCheck();
         if(lookingAtIt){
@@ -54,14 +67,17 @@ public class LookAtMe : MonoBehaviour
     public void MovingMethodL(){
         float distancePL = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         if(distancePL > stopDistance){
-            Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*movingSpeed);
+            if(curSpeed < movingSpeed) curSpeed = Mathf.Lerp(curSpeed, movingSpeed, 0.5f);
+            Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*curSpeed);
             transform.position = newPos;
         }else{
             if(lookingAtIt){
-                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*lookMovingSpeed);
+                if(curSpeed>lookMovingSpeed) curSpeed = Mathf.Lerp(curSpeed, lookMovingSpeed, 0.5f);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*curSpeed);
                 transform.position = newPos;
             }else{
-                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*lookMovingSpeed*1.1f);
+                if(curSpeed>lookMovingSpeed) curSpeed = Mathf.Lerp(curSpeed, lookMovingSpeed*1.1f, 0.5f);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*curSpeed);
                 transform.position = newPos;
             }
         } 
@@ -85,5 +101,15 @@ public class LookAtMe : MonoBehaviour
         }else{
             lookingAtIt = false;
         }
+    }
+
+    public void RepositionL(){
+        float tempX = Random.Range(10,20);
+        int minus = Random.Range(0,2);
+        if(minus==0) tempX *= -1;
+        float tempY = Random.Range(10,20);
+        minus = Random.Range(0,2);
+        if(minus==0) tempY *= -1;
+        transform.position = GameManager.instance.player.transform.position + new Vector3(tempX, tempY, 0);
     }
 }

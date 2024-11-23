@@ -9624,9 +9624,10 @@ MonoBehaviour:
   lookAngleDegree: 45
   lookingAtIt: 0
   mentalDamageAmount: 80
-  movingSpeed: 6
-  lookMovingSpeed: 2
+  movingSpeed: 10
+  lookMovingSpeed: 3
   stopDistance: 3
+  curSpeed: 0
 --- !u!212 &75617186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23030,7 +23031,7 @@ MonoBehaviour:
   isShieldActive: 0
   bossTime:
   - 10
-  - 180
+  - 270
   curBossStage: 0
   bossEntrancePage: {fileID: 483349917}
   fadeInOut: {fileID: 1067268405}

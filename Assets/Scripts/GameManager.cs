@@ -158,6 +158,9 @@ public class GameManager : MonoBehaviour
             curBossStage++;
             bossEntrancePage.SetActive(true);
             BossManager.instance.StartBossStage(1);
+            // bossEntrancePage.SetActive(true);
+            // BossManager.instance.StartBossStage(curBossStage);
+            // curBossStage++;
         }
         if(gameTime > maxGameTime){
             gameTime = maxGameTime;
