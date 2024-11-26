@@ -9,6 +9,7 @@ public class ForkNKnife : MonoBehaviour
 {
     Rigidbody2D rigid;
     Collider2D coll;
+    public int requiredCount;
     public float dmg;
     public float mentalDmg;
     public float height;
@@ -43,6 +44,8 @@ public class ForkNKnife : MonoBehaviour
     void OnEnable(){
         pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position;
         transform.position = Camera.main.GetComponentsInChildren<Transform>()[1].position;
+
+        BossManager.instance.ClearStack = requiredCount;
     }
 
     void Update(){
@@ -149,7 +152,7 @@ public class ForkNKnife : MonoBehaviour
             GameManager.instance.HealthDamage(dmg);
             GameManager.instance.MentalDamage(mentalDmg);
             //effect for getting hit(mental)
-        }else if(collider.CompareTag("Food")){//there is no food yet
+        }else if(collider.CompareTag("Food")){
             //스택쌓음, 일정개수 쌓이면 bossManager안에서 클리어판정내고 gamemanager에 spawnMonster 다시 true로 바꾸기, 현재 보스 비활성화 등등 일어남
             BossManager.instance.IncreaseCurStack();
             collider.gameObject.SetActive(false);

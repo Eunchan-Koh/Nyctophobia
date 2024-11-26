@@ -37,7 +37,13 @@ public class Reposition : MonoBehaviour
             case "normalMonster":
                 if(coll.enabled){
                     Vector3 dist = playerPos - myPos;
-                    Vector3 ran = new Vector3(Random.Range(-3f,3f), Random.Range(-3f,3f), 0);
+                    Vector3 ran;
+                    if(dist.x > 30){
+                        ran = new Vector3(0, Random.Range(-3f,3f), 0);
+                    }else{
+                        ran = new Vector3(Random.Range(-3f,3f), 0, 0);
+                    }
+                     
                     transform.Translate(ran + dist*2);
                     
                 }
@@ -47,7 +53,12 @@ public class Reposition : MonoBehaviour
                 if(coll.enabled){
                     
                     Vector3 dist = playerPos - myPos;
-                    Vector3 ran = new Vector3(Random.Range(-3f,3f), Random.Range(-3f,3f), 0);
+                    Vector3 ran;
+                    if(dist.x > 30){
+                        ran = new Vector3(0, Random.Range(-3f,3f), 0);
+                    }else{
+                        ran = new Vector3(Random.Range(-3f,3f), 0, 0);
+                    }
                     transform.Translate(ran + dist*2);
                     coll.transform.GetComponent<ghostMonster>().PosReset();
                     

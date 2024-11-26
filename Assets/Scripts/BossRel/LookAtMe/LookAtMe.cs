@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -21,7 +22,11 @@ public class LookAtMe : MonoBehaviour
     CameraMovement CM;
 
     public float curSpeed;
+    [Header("Clear Requirement")]
     public float timeCheck;
+    public float reqTime;//required time for getting claer counts;
+    public int curCount;
+    public int RequriedCount = 3;
 
     void Awake(){
         rigid = GetComponent<Rigidbody2D>();
@@ -32,6 +37,8 @@ public class LookAtMe : MonoBehaviour
     void OnEnable(){
         transform.position = GameManager.instance.player.transform.position + new Vector3(11, 11, 0);
         timeCheck = 0;
+
+        BossManager.instance.ClearStack = RequriedCount;
     }
     
     
@@ -42,7 +49,8 @@ public class LookAtMe : MonoBehaviour
 
         
         timeCheck += Time.deltaTime;
-        if(timeCheck > 5){
+        if(timeCheck > reqTime){
+            BossManager.instance.IncreaseCurStack();
             RepositionL();
             timeCheck = 0;
         }
@@ -51,6 +59,7 @@ public class LookAtMe : MonoBehaviour
         if(lookingAtIt){
             GameManager.instance.MentalDamage(mentalDamageAmount*Time.deltaTime, 1);
             CM.zoomIn = true;
+            timeCheck = 0;
         }else{
             CM.zoomIn = false;
         }
@@ -62,7 +71,6 @@ public class LookAtMe : MonoBehaviour
 
         MovingMethodL();
     }
-
     
     public void MovingMethodL(){
         float distancePL = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
@@ -104,6 +112,9 @@ public class LookAtMe : MonoBehaviour
     }
 
     public void RepositionL(){
+        //effect - 치지지직하면서 화면 글리치효과로 흔들리는거
+
+        //repositioning
         float tempX = Random.Range(10,20);
         int minus = Random.Range(0,2);
         if(minus==0) tempX *= -1;

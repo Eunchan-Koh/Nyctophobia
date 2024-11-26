@@ -41,7 +41,7 @@ public class BossManager : MonoBehaviour
         CurStack1++;
         if(CurStack1>= ClearStack){
             //clear, boss gone, return to normal condition. spawning normal monsters
-            boss[0].SetActive(false);
+            boss[curBossIndex].SetActive(false);
             doingBossFight = false;
             bossClearReqUI.enabled = false;
             GameManager.instance.player.cannnotTurnOnCandle = false;

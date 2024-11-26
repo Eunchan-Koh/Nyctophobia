@@ -66,10 +66,11 @@ public class GhostSpawner : MonoBehaviour
     }
 
     void Spawn(){
-        GameObject ghostMonster = GameManager.instance.ghostPool.Get(0);
+        int ranVal = Random.Range(0,spawnData.Length);
+        GameObject ghostMonster = GameManager.instance.ghostPool.Get(ranVal);
         ghostMonster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         // ghostMonster.GetComponent<ghostMonster>().Init(spawnData[level]);
-        curSpawnData = spawnData[Random.Range(0,spawnData.Length)];
+        curSpawnData = spawnData[ranVal];
         ghostMonster.GetComponent<ghostMonster>().Init(curSpawnData);
     }
 }
