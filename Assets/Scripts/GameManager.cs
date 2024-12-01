@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     public GameObject bossEntrancePage;
     [Header("Ghost related")]
     public FadeInOut fadeInOut;
+    [Header("Camera Related")]
+    public CameraMovement cMove;
+    public BlackScreen BS;
 
     [Header("testing values")]
     public Image NoiseEffectScreen;

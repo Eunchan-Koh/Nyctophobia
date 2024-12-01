@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class LookAtMe : MonoBehaviour
 {
@@ -20,8 +21,10 @@ public class LookAtMe : MonoBehaviour
     public float stopDistance;
     Rigidbody2D rigid;
     CameraMovement CM;
+    SpriteRenderer spriter;
 
     public float curSpeed;
+    public float spriteTime;
     [Header("Clear Requirement")]
     public float timeCheck;
     public float reqTime;//required time for getting claer counts;
@@ -32,13 +35,20 @@ public class LookAtMe : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         CM = Camera.main.GetComponent<CameraMovement>();
         curSpeed = movingSpeed;
+        spriter = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable(){
         transform.position = GameManager.instance.player.transform.position + new Vector3(11, 11, 0);
         timeCheck = 0;
+        CM.otherZoomIn = true;
 
         BossManager.instance.ClearStack = RequriedCount;
+    }
+
+    void OnDisable(){
+        CM.otherZoomIn = false;
+        CM.ZoomInReset();
     }
     
     
@@ -47,12 +57,22 @@ public class LookAtMe : MonoBehaviour
         if(!GameManager.instance.isLive)
             return;
 
+        spriter.flipX = GameManager.instance.player.transform.position.x > this.transform.position.x? true:false;
         
+        spriteTime += Time.deltaTime;
+        // if(Mathf.RoundToInt(spriteTime)%3 == 0){
+        //     spriter.enabled = false;
+        // }else{
+        //     spriter.enabled = true;
+        // }
         timeCheck += Time.deltaTime;
+        
         if(timeCheck > reqTime){
             BossManager.instance.IncreaseCurStack();
             RepositionL();
             timeCheck = 0;
+            GameManager.instance.BS.OnForSeconds(0.3f);
+            CM.ZoomInToInt((int)CM.GetBaseZoom() + BossManager.instance.CurStack1*4);
         }
 
         LookCheck();

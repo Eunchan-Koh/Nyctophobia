@@ -24,6 +24,9 @@ public class BossManager : MonoBehaviour
 
     void Update(){
         bossClearReqUI.text = CurStack1+"/"+ClearStack;
+        if(Input.GetKeyDown(KeyCode.F)){
+            StartBossStage(2);
+        }
     }
 
     public void StartBossStage(int index){
