@@ -47,6 +47,7 @@ public class LookAtMe : MonoBehaviour
     }
 
     void OnDisable(){
+        // GameManager.instance.player.FallingIntoIt = false;
         CM.otherZoomIn = false;
         CM.ZoomInReset();
     }
@@ -95,10 +96,14 @@ public class LookAtMe : MonoBehaviour
     public void MovingMethodL(){
         float distancePL = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         if(distancePL > stopDistance){
+            // GameManager.instance.player.FallingIntoIt = false;
             if(curSpeed < movingSpeed) curSpeed = Mathf.Lerp(curSpeed, movingSpeed, 0.5f);
             Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*curSpeed);
             transform.position = newPos;
         }else{
+            //make player's moving direction close to it.
+            // GameManager.instance.player.FallingIntoIt = true;
+            //check if player is looking at it - in stopDistance, gets slower. If player is looking at it, gets more slower.
             if(lookingAtIt){
                 if(curSpeed>lookMovingSpeed) curSpeed = Mathf.Lerp(curSpeed, lookMovingSpeed, 0.5f);
                 Vector3 newPos = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, Time.fixedDeltaTime*curSpeed);
@@ -124,6 +129,13 @@ public class LookAtMe : MonoBehaviour
         //temp shows the angle betwween player's lsat direction facing and this object.
 
         float distance = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
+        if(distance <= lookRange){
+            GameManager.instance.player.PlayerCameraOffset.transform.position = (this.gameObject.transform.position + GameManager.instance.player.transform.position)/2;
+            CM.FollowingObj = GameManager.instance.player.PlayerCameraOffset;
+        }else{
+            GameManager.instance.player.PlayerCameraOffset.transform.localPosition = Vector3.zero;
+            CM.FollowingObj = GameManager.instance.player.PlayerCameraOffset;
+        }
         if(angle <= lookAngleDegree && distance <= lookRange){
             lookingAtIt = true;
         }else{

@@ -8,15 +8,15 @@ public class CameraShake : MonoBehaviour
     public bool flipHorizontal;
     public bool flipVertical;
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)){
-            Shake();
-        }  
-        if(Input.GetKeyDown(KeyCode.R)){
-            Flip();
-        }
-    }
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.E)){
+    //         Shake();
+    //     }  
+    //     if(Input.GetKeyDown(KeyCode.R)){
+    //         Flip();
+    //     }
+    // }
 
     void Shake(){
         StopCoroutine(ShakeCamera());

@@ -9664,7 +9664,7 @@ MonoBehaviour:
   lookAngleDegree: 45
   lookingAtIt: 0
   mentalDamageAmount: 80
-  movingSpeed: 10
+  movingSpeed: 15
   lookMovingSpeed: 3
   stopDistance: 3
   curSpeed: 0
@@ -9715,7 +9715,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13439,7 +13439,7 @@ MonoBehaviour:
   zoomOutSpeed: 20
   FollowingObj: {fileID: 1920922747}
   cinemachineVC: {fileID: 713983059}
-  hasCameraDamping: 0
+  hasCameraDamping: 1
   followingPlayer: 1
   otherZoomIn: 0
 --- !u!1 &525636033
@@ -23971,7 +23971,7 @@ MonoBehaviour:
   curShieldStack: 0
   isShieldActive: 0
   bossTime:
-  - 10
+  - 2
   - 180
   curBossStage: 0
   bossEntrancePage: {fileID: 483349917}
@@ -38230,8 +38230,12 @@ MonoBehaviour:
   - {fileID: -9127967132143290776, guid: a8ba409c35fdcba47b650619bac1f883, type: 3}
   - {fileID: -5913451517203038109, guid: a8ba409c35fdcba47b650619bac1f883, type: 3}
   - {fileID: -8139500910233785508, guid: a8ba409c35fdcba47b650619bac1f883, type: 3}
+  PlayerCameraOffset: {fileID: 1920922747}
   itemMagnet: {fileID: 1716229773}
   shield: {fileID: 1039458721}
+  LookAtMe: {fileID: 75617184}
+  tempA: 0.1
+  tempB: 0
 --- !u!114 &1399320407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50075,7 +50079,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -5087689174392206452, guid: 2c92037b31309b2468fba290f1c2d739, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -50346,7 +50350,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

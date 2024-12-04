@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
+using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
@@ -25,11 +27,22 @@ public class Player : MonoBehaviour
     public bool candleOn;
     public bool cannnotTurnOnCandle;
     public Sprite[] candleImages;
+    [Header("Camera Related")]
+    public GameObject PlayerCameraOffset;
 
     [Header("Other items")]
     public GameObject itemMagnet;
     public GameObject shield;
     bool isImmortal = false;
+
+    public GameObject LookAtMe;
+    [Range(0.0f, 5.0f)]
+    public float tempA;
+    [Range(0.0f, 5.0f)]
+    public float tempB;
+    // public Vector3 movingDir = Vector3.zero;
+    // Vector3 prevInputVec = Vector3.zero;
+    // public bool FallingIntoIt;
 
 
     // Start is called before the first frame update
@@ -50,6 +63,23 @@ public class Player : MonoBehaviour
     {
         if(!GameManager.instance.isLive)
             return;
+        ////////////////////////////////
+        //1. 가는 방향 체크
+        //2. 가는 방향 vector 구해서 rotationVec 방향 구하고
+        //3. MovePosition에 그 둘을 합한 방향으로 가기
+        /////////////////////////
+        // Debug.Log(Vector3.Angle(inputVec, (testingItem.transform.position - transform.position).normalized));
+
+        // if(FallingIntoIt){
+        //     if(inputVec != Vector2.zero) movingDir = Vector3.RotateTowards(movingDir,(LookAtMe.transform.position - transform.position),tempA,tempB);
+        //     else movingDir = inputVec;
+        // }
+        // if(FallingIntoIt){
+            
+        // }
+
+        // rigid.MovePosition(transform.position + movingDir*Time.fixedDeltaTime*speed);
+        /////////////////////////////
         Vector3 newVec = inputVec * speed * Time.fixedDeltaTime;
         rigid.MovePosition(transform.position + newVec);
     }
@@ -59,8 +89,10 @@ public class Player : MonoBehaviour
             return;
             
         anim.SetFloat("Speed", inputVec.magnitude);
-        if(inputVec.x != 0){
+        // if(movingDir.x != 0){
+            if(inputVec.x != 0){
             spriter.flipX = inputVec.x<0;
+            // spriter.flipX = movingDir.x<0;
         }
         CandleCheck();
         
@@ -91,6 +123,12 @@ public class Player : MonoBehaviour
         if (inputVec != Vector2.zero){
             lastFacing = inputVec;
         }
+
+        //checking and setting movingDir and prevInputVec
+        // if((Vector3)inputVec != prevInputVec){
+        //     movingDir = inputVec;
+        //     prevInputVec = inputVec;
+        // }
     }
 
     void OnCollisionStay2D(Collision2D collision){
