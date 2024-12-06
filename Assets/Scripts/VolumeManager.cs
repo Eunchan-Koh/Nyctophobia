@@ -90,7 +90,8 @@ public class VolumeManager : MonoBehaviour
 
     public void GrayScale(){
         setGrayScale = true;
-        saturationVal = -100;
+        // saturationVal = -100;
+        saturationVal = -50;
     }
 
     public void GrayScaleRecover(float forTime){

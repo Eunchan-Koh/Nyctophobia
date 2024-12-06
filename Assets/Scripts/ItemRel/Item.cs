@@ -161,6 +161,11 @@ public class Item : MonoBehaviour
                 break;
         }
 
+        //check if it is selected already for curItemHUD
+        if(level == 1){
+            GameManager.instance.uiLevelUp.UpdateCurItem(this);
+        }
+
         
 
         if(level == data.damages.Length){

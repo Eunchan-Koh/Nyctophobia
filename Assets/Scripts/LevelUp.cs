@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
     RectTransform rect;
     Item[] items;
     Animator anim;
+    public int maxItemCount;
+    public int curItemCount = 0;
+    public Item[] selectedItems;
+    public Image[] itemUI;
 
     void Awake()
     {
         rect = GetComponent<RectTransform>();
         items = GetComponentsInChildren<Item>(true);
         anim = GetComponentInChildren<Animator>();
+
+        curItemCount = 0;
+
+        selectedItems = new Item[maxItemCount];
+        for(int i = 0; i < maxItemCount; i++){
+            selectedItems[i] = null;
+        }
     }
 
     public void Show(){
@@ -40,6 +54,13 @@ public class LevelUp : MonoBehaviour
         
     }
 
+    public void UpdateCurItem(Item receivedItem){
+        selectedItems[curItemCount] = receivedItem;
+        itemUI[curItemCount].sprite = receivedItem.data.itemIcon;
+        itemUI[curItemCount].color = new Color(1,1,1,1);
+        curItemCount++;
+    }
+
     public void Select(int index){
         items[index].OnClick();
     }
@@ -51,26 +72,50 @@ public class LevelUp : MonoBehaviour
         }
         //2 그 중 랜덤 3개 아이템 활성
         int[] ran = new int[3];
-        while(true){
-            ran[0] = Random.Range(0,items.Length);
-            ran[1] = Random.Range(0,items.Length);
-            ran[2] = Random.Range(0,items.Length);
+        if(curItemCount < maxItemCount){
+            while(true){
+                ran[0] = Random.Range(0,items.Length);
+                ran[1] = Random.Range(0,items.Length);
+                ran[2] = Random.Range(0,items.Length);
 
-            if(ran[0] != ran[1] && ran[0] != ran[2] && ran[1] != ran[2])
-               break; 
-            
-        }
-
-        for(int i = 0; i < ran.Length; i++){
-            Item ranItem = items[ran[i]];
-
-            //3 만렙 아이템은 소비 아이템으로 대체
-            if(ranItem.level == ranItem.data.damages.Length){
-                ranItem = items[4];
+                if(ran[0] != ran[1] && ran[0] != ran[2] && ran[1] != ran[2])
+                break; 
+                
             }
-            ranItem.gameObject.SetActive(true);
-            
+            for(int i = 0; i < ran.Length; i++){
+                Item ranItem = items[ran[i]];
+
+                //3 만렙 아이템은 소비 아이템으로 대체
+                if(ranItem.level == ranItem.data.damages.Length){
+                    ranItem = items[4];
+                }
+                ranItem.gameObject.SetActive(true);
+                
+            }
+        }else{
+            while(true){
+                ran[0] = Random.Range(0,selectedItems.Length);
+                ran[1] = Random.Range(0,selectedItems.Length);
+                ran[2] = Random.Range(0,selectedItems.Length);
+
+                if(ran[0] != ran[1] && ran[0] != ran[2] && ran[1] != ran[2])
+                break; 
+                
+            }
+            for(int i = 0; i < ran.Length; i++){
+                Item ranItem = selectedItems[ran[i]];
+
+                //3 만렙 아이템은 소비 아이템으로 대체
+                if(ranItem.level == ranItem.data.damages.Length){
+                    ranItem = items[4];
+                }
+                ranItem.gameObject.SetActive(true);
+                
+            }
         }
+        
+
+        
 
         
     }
