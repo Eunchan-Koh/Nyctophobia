@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DigestingMaze : MonoBehaviour
 {
@@ -13,10 +14,23 @@ public class DigestingMaze : MonoBehaviour
     public GameObject[] walls;
     public int size;
     public Vector3 cameraSize;
+    public Image FillImage;
+    public float maxFillTime;
+    public float proceedTime = 0;
+    ParticleControl[] particlesCheck;
+    bool posCheck = false;
+
+    void Awake(){
+        particlesCheck = GetComponentsInChildren<ParticleControl>();
+    }
     void OnEnable(){
         // Time.timeScale = 0.001f;
+        GameManager.instance.cMove.hasCameraDamping = false;
         GameManager.instance.cMove.followingPlayer = false;
-        transform.position = GameManager.instance.player.transform.position;
+        // transform.position = GameManager.instance.player.transform.position;
+        
+
+        transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10));
         thisPos = transform.position;
         wrongCount = 0;
         ResetDWPosition();
@@ -33,6 +47,12 @@ public class DigestingMaze : MonoBehaviour
     }
 
     void Update(){
+        proceedTime += Time.deltaTime;
+        if(proceedTime >= maxFillTime){
+            FailDoor();
+        }
+
+        FillImage.fillAmount = proceedTime/maxFillTime;
         ResetDWPosition();
         if(wrongCount >= maxWrongCount){
             GameManager.instance.fadeInOut.fadeOutTime= 3;
@@ -54,12 +74,20 @@ public class DigestingMaze : MonoBehaviour
         ClearDM();
     }
     void ClearDM(){
+        FillImage.fillAmount = 0;
         GameManager.instance.cMove.followingPlayer = true;
-
+        GameManager.instance.cMove.hasCameraDamping = true;
         GameManager.instance.cMove.otherZoomIn = false;
     }
 
     void ResetDWPosition(){
+        if(transform.position == Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10)))
+            posCheck = true;
+        else
+            posCheck = false;
+            
+        if(posCheck) return;
+        
         cameraSize = Camera.main.ViewportToWorldPoint (new Vector3(1.0f,1.0f,10.0f)) - Camera.main.ViewportToWorldPoint (new Vector3(0.0f,0.0f,10.0f));
         
         // Debug.Log(cameraSize);
@@ -97,6 +125,10 @@ public class DigestingMaze : MonoBehaviour
         walls[3].transform.localScale = new Vector3((cameraSize.x-1)/2, walls[3].transform.localScale.y, walls[3].transform.localScale.z);
         walls[5].transform.localScale = new Vector3((cameraSize.x-1)/2, walls[5].transform.localScale.y, walls[5].transform.localScale.z);
         walls[7].transform.localScale = new Vector3((cameraSize.x-1)/2, walls[7].transform.localScale.y, walls[7].transform.localScale.z);
+
+        for(int i = 0; i < particlesCheck.Length; i ++){
+            particlesCheck[i].UpdateSizes();
+        }
     }
 
     public void SuccessDoor(){
@@ -108,6 +140,10 @@ public class DigestingMaze : MonoBehaviour
         GameManager.instance.MentalDamage(30);
         //additional effect
         GameManager.instance.cMove.ZoomInToInt(size+(wrongCount*wrongCount*4));
+
+        for(int i = 0 ; i< MazeDoors.Length; i++){
+            MazeDoors[i].resetWarningSize();
+        }
         // ResetDWPosition();
     }
 }

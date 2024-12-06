@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
         if(curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
             curBossStage++;
             bossEntrancePage.SetActive(true);
-            BossManager.instance.StartBossStage(1);
+            BossManager.instance.StartBossStage(2);
             // bossEntrancePage.SetActive(true);
             // BossManager.instance.StartBossStage(curBossStage);
             // curBossStage++;
