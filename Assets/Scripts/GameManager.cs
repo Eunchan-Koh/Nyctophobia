@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     [Header("testing values")]
     public Image NoiseEffectScreen;
     public Material noiseMat;
+    public int curBossIndex;
 
 
     void Awake(){
@@ -160,7 +161,7 @@ public class GameManager : MonoBehaviour
         if(curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
             curBossStage++;
             bossEntrancePage.SetActive(true);
-            BossManager.instance.StartBossStage(2);
+            BossManager.instance.StartBossStage(curBossIndex);
             // bossEntrancePage.SetActive(true);
             // BossManager.instance.StartBossStage(curBossStage);
             // curBossStage++;
