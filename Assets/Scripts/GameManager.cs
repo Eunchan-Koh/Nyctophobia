@@ -184,8 +184,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             }
-
-            BossManager.instance.StartBossStage(0);
+            
+            BossManager.instance.StartBossStage(curBossIndex);
             checkingBoss = false;
             // bossEntrancePage.SetActive(true);
             // BossManager.instance.StartBossStage(curBossStage);
