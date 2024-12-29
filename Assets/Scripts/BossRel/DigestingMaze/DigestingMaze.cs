@@ -18,7 +18,6 @@ public class DigestingMaze : MonoBehaviour
     public float maxFillTime;
     public float proceedTime = 0;
     ParticleControl[] particlesCheck;
-    bool posCheck = false;
 
     void Awake(){
         particlesCheck = GetComponentsInChildren<ParticleControl>();
@@ -81,12 +80,7 @@ public class DigestingMaze : MonoBehaviour
     }
 
     void ResetDWPosition(){
-        if(transform.position == Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10)))
-            posCheck = true;
-        else
-            posCheck = false;
-            
-        if(posCheck) return;
+
         
         cameraSize = Camera.main.ViewportToWorldPoint (new Vector3(1.0f,1.0f,10.0f)) - Camera.main.ViewportToWorldPoint (new Vector3(0.0f,0.0f,10.0f));
         

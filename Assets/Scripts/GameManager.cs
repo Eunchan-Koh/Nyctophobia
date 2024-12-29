@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     public Image NoiseEffectScreen;
     public Material noiseMat;
     public int curBossIndex;
+    public List<int> doneBoss;
+    bool checkingBoss = false;
 
 
     void Awake(){
@@ -73,6 +75,8 @@ public class GameManager : MonoBehaviour
         curBossStage = 0;
         noiseMat = NoiseEffectScreen.material;
         noiseMat.SetFloat("_Alpha", 0);
+
+        doneBoss = new List<int>();
     }
 
     public void GameStart(){
@@ -153,15 +157,36 @@ public class GameManager : MonoBehaviour
     }
 
     void Update(){
+        
+        //exit check
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit();
+        }
         if(!isLive)
             return;
         
         gameTime += Time.deltaTime;
 
-        if(curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
+        //boss stage
+        if(!checkingBoss && curBossStage < bossTime.Length && !BossManager.instance.doingBossFight && gameTime > bossTime[curBossStage]){
+            checkingBoss = true;
             curBossStage++;
             bossEntrancePage.SetActive(true);
-            BossManager.instance.StartBossStage(curBossIndex);
+
+            while(true){
+                int ranBossVal = Random.Range(0,BossManager.instance.boss.Length);
+                //check if this boss is selected already
+                if(doneBoss.Contains(ranBossVal)){
+                    continue;
+                }
+                doneBoss.Add(ranBossVal);
+                curBossIndex = ranBossVal;
+                break;
+
+            }
+
+            BossManager.instance.StartBossStage(0);
+            checkingBoss = false;
             // bossEntrancePage.SetActive(true);
             // BossManager.instance.StartBossStage(curBossStage);
             // curBossStage++;
@@ -170,6 +195,8 @@ public class GameManager : MonoBehaviour
             gameTime = maxGameTime;
             GameVictory();
         }
+
+
 
         CheckShield();
 

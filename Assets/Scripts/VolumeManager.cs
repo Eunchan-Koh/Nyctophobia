@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Properties;
 using Unity.VisualScripting.FullSerializer;
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;

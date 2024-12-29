@@ -26894,12 +26894,12 @@ RectTransform:
   m_Children:
   - {fileID: 1964900153}
   - {fileID: 1067268404}
+  - {fileID: 618944656}
+  - {fileID: 2044757859}
   - {fileID: 1159014580}
   - {fileID: 137940022}
   - {fileID: 2059701334}
-  - {fileID: 2044757859}
   - {fileID: 483349918}
-  - {fileID: 618944656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -43024,7 +43024,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 3.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -53751,7 +53751,7 @@ MonoBehaviour:
   level: 0
   killCount: 0
   exp: 0
-  nextExp: 03000000050000000a0000001400000023000000370000004b0000006400000082000000a5000000
+  nextExp: 030000000500000008000000120000001e00000032000000460000005a0000007800000096000000
   pool: {fileID: 844574280}
   ghostPool: {fileID: 1618515597}
   player: {fileID: 1399320406}
@@ -53765,7 +53765,7 @@ MonoBehaviour:
   curShieldStack: 0
   isShieldActive: 0
   bossTime:
-  - 10
+  - 60
   - 180
   curBossStage: 0
   bossEntrancePage: {fileID: 483349917}
@@ -53775,6 +53775,7 @@ MonoBehaviour:
   NoiseEffectScreen: {fileID: 2044757860}
   noiseMat: {fileID: 0}
   curBossIndex: 2
+  doneBoss: 
 --- !u!4 &628946596
 Transform:
   m_ObjectHideFlags: 0
@@ -87583,6 +87584,7 @@ Transform:
   m_Children:
   - {fileID: 1841044778}
   - {fileID: 75617187}
+  - {fileID: 1606823170}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345214560
@@ -113648,14 +113650,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606823168}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 652752921}
   - {fileID: 65862552}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1343892628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610914248
 GameObject:
@@ -131626,4 +131628,3 @@ SceneRoots:
   - {fileID: 451516471}
   - {fileID: 1182877335}
   - {fileID: 774112585}
-  - {fileID: 1606823170}

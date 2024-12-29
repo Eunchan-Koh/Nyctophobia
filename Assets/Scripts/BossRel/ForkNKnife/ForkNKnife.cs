@@ -42,8 +42,8 @@ public class ForkNKnife : MonoBehaviour
     }
 
     void OnEnable(){
-        pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position;
-        transform.position = Camera.main.GetComponentsInChildren<Transform>()[1].position;
+        pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position + new Vector3(0,0,10);
+        transform.position = Camera.main.GetComponentsInChildren<Transform>()[1].position + new Vector3(0,0,10);
 
         BossManager.instance.ClearStack = requiredCount;
     }
@@ -115,7 +115,7 @@ public class ForkNKnife : MonoBehaviour
         //waiting
         timer += Time.deltaTime;
         if(pattern == 0){
-            pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position;
+            pos1 = Camera.main.GetComponentsInChildren<Transform>()[1].position + new Vector3(0,0,10);
             transform.position = Vector3.Lerp(transform.position, pos1, 2.0f * Time.deltaTime);
             if(timer >= waitTime){
                 timer = 0;
